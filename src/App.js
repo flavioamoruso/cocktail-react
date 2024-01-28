@@ -5,14 +5,22 @@ import AboutScreen from "./screen/AboutScreen";
 import ContactScreen from "./screen/ContactScreen";
 import SingleCocktailScreen from "./screen/SingleCocktailScreen";
 import ErrorScreen from "./screen/ErrorScreen";
-import { useGlobalContext } from "./context";
+
 
 function App() {
-  const prova = useGlobalContext
-  console.log(prova);
-  return <div className='App'>
-    App
-  </div>;
+
+  return <Router className='App'>
+    <Navbar/>
+    <Sidebar/>
+    <Footer/>
+    <Routes>
+    <Route path="/" Component={HomeScreen} />
+    <Route path="/about" Component={AboutScreen}/>
+    <Route path="/contattaci" Component={ContactScreen}/>
+    <Route path="/cocktail/:id" Component={SingleCocktailScreen}/>
+    <Route path="*" Component={ErrorScreen}/>
+    </Routes>
+  </Router>;
 }
 
 export default App;
