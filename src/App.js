@@ -12,7 +12,6 @@ function App() {
   return <Router className='App'>
     <Navbar/>
     <Sidebar/>
-    <Footer/>
     <Routes>
     <Route path="/" Component={HomeScreen} />
     <Route path="/about" Component={AboutScreen}/>
@@ -20,6 +19,7 @@ function App() {
     <Route path="/cocktail/:id" Component={SingleCocktailScreen}/>
     <Route path="*" Component={ErrorScreen}/>
     </Routes>
+    <Footer/>
   </Router>;
 }
 
