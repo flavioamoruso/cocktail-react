@@ -5,7 +5,9 @@ import image from "../assets/image/about-hero.jpg";
 import teamImg from "../assets/image/team-img.jpg";
 
 const AboutScreen = () => {
-  return <>About Screen</>;
+  return <>
+  <Hero img={image} />
+  </>
 };
 
 export default AboutScreen;
