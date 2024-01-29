@@ -6,19 +6,19 @@ export const valueCards = [
     title: "Educare",
     icon: <IoSchool className="icon card-icon" />,
     text:
-      " Pickled hashtag portland pork belly cred selvage viral retro prism lomo narwhal cray selfies vegan lyft.",
+      " La vita è fatta di sofferenza ma spetta a noi resistere.",
   },
   {
     title: "Insegnare",
     icon: <IoPeopleCircleSharp className="icon card-icon" />,
     text:
-      "iPhone banh mi you probably haven't heard of them fanny pack marfa four loko freegan. XOXO salvia twee whatever post-ironic blog",
+      "Il mio Iphone non funziona, quindi ho chiamato un tecnico che mi risolvesse il problema",
   },
   {
     title: "Centralizzare",
     icon: <ImDatabase className="icon card-icon" />,
     text:
-      "Tilde post-ironic celiac franzen sustainable, vinyl polaroid direct trade tattooed vaporware kogi health goth cray echo park organic.",
+      "All'inizio del tuo percorso ti troverai in un tornado di imprevisti ma ricordati che sarai tu il tornado se resisti a tutto.",
   },
 ];
 
