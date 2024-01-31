@@ -2,9 +2,46 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { HiClipboardList } from "react-icons/hi";
+import { useGlobalContext } from "../context";
 
-const Cocktail = () => {
-  return <Wrapper>Cocktail</Wrapper>;
+const Cocktail = ({ strDrinkThumb: img, idDrink: _id, strDrink: name }) => {
+  const [show, setShow] = useState(false);
+
+  return (
+    <Wrapper>
+      <div
+        className='img'
+        style={{
+          backgroundImage: `url(${img})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      <div
+        className={
+          show ? `card-text container show-info` : "card-text container"
+        }
+      >
+        <h5>{name}</h5>
+        <div
+          className='see-more-btn brand-color'
+        >
+          <h5>Ricetta</h5>
+          <HiClipboardList className='icon ' />
+        </div>
+      </div>
+      <div className='card-text-sm container'>
+        <h5>{name}</h5>
+        <div
+          className='see-more-btn brand-color'
+        >
+          <h5>Ricetta</h5>
+          <HiClipboardList className='icon ' />
+        </div>
+      </div>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.article`
@@ -39,8 +76,7 @@ const Wrapper = styled.article`
   }
 
   .see-more-btn {
-    display: grid;
-    grid-template-columns: 1fr auto;
+    display: flex;
     align-items: center;
     gap: 0.7rem;
     transition: var(--transition);
