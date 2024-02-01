@@ -13,6 +13,8 @@ const HomeScreen = () => {
     searchCocktail,
     query,
     count,
+    deleteScrollPosition,
+    scrollPosition,
   } = useGlobalContext();
   const [input, setInput] = useState(query);
   const handleSubmit = (e) => {
@@ -20,13 +22,21 @@ const HomeScreen = () => {
     searchCocktail(input);
   };
 
+  useEffect(() => {
+    if (scrollPosition) {
+      window.scrollTo(0, scrollPosition);
+      deleteScrollPosition();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <Hero>
         <div className="home-hero">
           <div className="home-hero-text">
             <div className="home-hero-title">
-              <h2 className="brand-color"> WIKI DRINK</h2>
+              <h2 className="brand-color"> COCKTAIL & DREAMS</h2>
               <h4>Tutti i cocktail del mondo a portata di click</h4>
             </div>
             <p>

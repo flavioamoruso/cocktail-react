@@ -5,7 +5,8 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [query, setQuery] = useState("negroni");
+  const [scrollPosition,setScrollPosition] = useState(0);
+  const [query, setQuery] = useState("Margarita");
   const { isLoading, data, isError, count } = useFetch(`s=${query}`);
   //SIDEBAR FUNCTIONS
   const openSidebar = () => {
@@ -22,13 +23,28 @@ const AppProvider = ({ children }) => {
     setQuery(input);
   };
 
+  
+  //Aggiorno lo state con la posizione in cui ho cliccato sulla ricetta
+  const getScrollPosition = (value) => {
+    setScrollPosition(value);
+  }
+
+
+  //Imposto state dello scroll position a 0
+  const deleteScrollPosition = (value) => {
+    setScrollPosition(0);
+  }
+
   return (
     <AppContext.Provider
       value={{
         isSidebarOpen,
         openSidebar,
         closeSidebar,
+        getScrollPosition,
+        deleteScrollPosition,
         searchCocktail,
+        scrollPosition,
         isLoading,
         isError,
         count,

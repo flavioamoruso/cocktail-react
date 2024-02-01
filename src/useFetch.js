@@ -21,7 +21,7 @@ const useFetch = (query, type = false) => {
         setIsError(true);
         setCount(0);
       }
-      setIsLoading(true);
+      setIsLoading(false);
     })(query);
   }, [query, url]);
 
