@@ -3,12 +3,36 @@ import { Loading, ErrorMessage } from "../components";
 import { useParams, Link } from "react-router-dom";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import styled from "styled-components";
+import useFetch from "../useFetch";
 const SingleCocktailScreen = () => {
-  return <Wrapper>Single Cocktail</Wrapper>;
+  const {id} = useParams();
+  const {isLoading, isError, data} = useFetch(`i=${id}` , true)
+  if (isLoading){
+    return (
+      <Wrapper>
+        <Loading/>
+      </Wrapper>
+    )
+  }
+ if(isError){
+  return(
+    <Wrapper>
+      <div className="container cocktail-content">
+        <header>
+          <Link to='/'>
+            <IoArrowBackCircleSharp className="icon" />
+          </Link> 
+        </header>
+        <ErrorMessage>Cocktail non disponibile</ErrorMessage>
+      </div>
+    </Wrapper>
+  )
+ }
+ return <Wrapper>Single cocktail</Wrapper>
 };
 
 const Wrapper = styled.section`
-  height: auto;
+  min-height: 100vh;
   padding-bottom: 4rem;
   .spacer {
     display: grid;
