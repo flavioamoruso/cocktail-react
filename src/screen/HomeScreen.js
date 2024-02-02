@@ -5,7 +5,9 @@ import Lottie from "react-lottie";
 import animationData from "../assets/animation/drink-animation.json";
 import { useGlobalContext } from "../context";
 import { Link } from "react-router-dom";
+import useTitle from "../useTitle";
 const HomeScreen = () => {
+  useTitle('Home')
   const {
     data,
     isLoading,
@@ -36,14 +38,13 @@ const HomeScreen = () => {
         <div className="home-hero">
           <div className="home-hero-text">
             <div className="home-hero-title">
-              <h2 className="brand-color"> COCKTAIL & DREAMS</h2>
+              <h2 className="brand-color" style={{
+                marginTop : '10px'
+              }}> COCKTAIL & DREAMS</h2>
               <h4>Tutti i cocktail del mondo a portata di click</h4>
             </div>
             <p>
-              Wiki Drink è un database internazionale che mette a tua
-              disposizione, in maniera{" "}
-              <span className="brand-color">Gratuita</span>, le ricette dei più
-              importanti e diffusi cocktail al mondo.
+              Cocktail & Dreams è un sito  <span className="brand-color"> Gratuito</span> pensato per tutti gli appassionati dei drink di tutti i generi 
             </p>
             <Link to="/about" className="btn btn-primary">
               Scopri di più
