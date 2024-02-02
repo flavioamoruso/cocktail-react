@@ -10,139 +10,220 @@ const SingleCocktailScreen = () => {
   if (isLoading){
     return (
       <Wrapper>
-        <Loading/>
+      <Loading/>
       </Wrapper>
-    )
-  }
- if(isError){
-  return(
-    <Wrapper>
-      <div className="container cocktail-content">
+      )
+    }
+    if(isError){
+      return(
+        <Wrapper>
+        <div className="container cocktail-content">
         <header>
-          <Link to='/'>
-            <IoArrowBackCircleSharp className="icon" />
-          </Link> 
+        <Link to='/'>
+        <IoArrowBackCircleSharp className="icon" />
+        </Link> 
         </header>
         <ErrorMessage>Cocktail non disponibile</ErrorMessage>
-      </div>
-    </Wrapper>
-  )
- }
- return <Wrapper>Single cocktail</Wrapper>
-};
+        </div>
+        </Wrapper>
+        )
+      }
+      const {
+        strAlcoholic: type,
+        strCategory: category,
+        strDrink: name,
+        strGlass,
+        strDrinkThumb: image,
+        strIngredient1,
+        strIngredient2,
+        strIngredient3,
+        strIngredient4,
+        strIngredient5,
+        strInstructions,
+        strInstructionsIT,
+        strMeasure1,
+        strMeasure2,
+        strMeasure3,
+        strMeasure4,
+        strMeasure5,
+      } = data.drinks[0];
+      
+      const strInstructionsList = [
+        { istruzione: strIngredient1, qty: strMeasure1 },
+        { istruzione: strIngredient2, qty: strMeasure2 },
+        { istruzione: strIngredient3, qty: strMeasure3 },
+        { istruzione: strIngredient4, qty: strMeasure4 },
+        { istruzione: strIngredient5, qty: strMeasure5 },
+      ];
+      return <Wrapper>
+        <div className="container cocktail-content">
+        <header>
+        <Link to='/'>
+        <IoArrowBackCircleSharp className="icon" />
+        </Link> 
+        <h4 className="back-arrow">Torna in Home</h4>
+        </header>
+        <hr/>
+        <div className="cocktail-container">
+          <img src={image} alt={name} className="img" />
+          <div className="cocktail-datails">
+            <div className="spacer">
+              <h2>{name}</h2>
+              <div className="cocktail-type">
+                <p className="label">{type}</p>
+                <p className="label">{category}</p>
+                <p className="label">{strGlass}</p>
+              </div>
+            </div>
+            <hr />
 
-const Wrapper = styled.section`
-  min-height: 100vh;
-  padding-bottom: 4rem;
-  .spacer {
-    display: grid;
-    gap: 0.325rem;
-  }
-  .cocktail-content {
-    display: grid;
-    gap: 2rem;
-    header {
+            <div className="spacer">
+              <h4>Ingredienti</h4>
+              <ul className="instruction-list">
+                <li>
+                  {
+                    strInstructionsList.map ((el,index) => {
+
+                      if(el.istruzione){
+                        return <li key={index}>
+                          <p 
+                          className="info">
+                          {el.qty} 
+                          {el.istruzione}
+                          </p>
+                        </li>
+                      }
+
+                    })
+                  }
+                </li>
+              </ul>
+            </div>
+            <hr/>
+            <div className="spacer">
+              <h4>Guida</h4>
+              <p className="info">
+                {strInstructionsIT ? strInstructionsIT : strInstructions}
+              </p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </Wrapper>
+    };
+    
+    const Wrapper = styled.section`
+    min-height: 100vh;
+    padding-bottom: 4rem;
+    .spacer {
       display: grid;
-      align-items: center;
-      justify-content: flex-start;
-      grid-template-columns: auto 1fr;
-      gap: 2rem;
-      margin-top: 2rem;
-      margin-bottom: 0;
-      .icon {
-        font-size: 2.5rem;
-        transition: var(--transition);
-        &:hover {
-          color: var(--byzantine);
-          transform: scale(1.02);
-        }
-      }
-      .back-arrow {
-        text-transform: uppercase;
-        color: var(--primary-gray);
-        font-weight: 500;
-      }
+      gap: 0.325rem;
     }
-    .cocktail-container {
-      margin-top: 1rem;
+    .cocktail-content {
       display: grid;
       gap: 2rem;
-      .img {
-        width: 100%;
-        border-radius: var(--radius);
-      }
-      .cocktail-datails {
+      header {
         display: grid;
-        gap: 1rem;
-        h2 {
-          text-transform: uppercase;
-        }
-        .cocktail-type {
-          display: grid;
-          grid-template-columns: auto auto auto;
-          justify-content: flex-start;
-          gap: 0.5rem !important;
-          .label {
-            text-transform: lowercase;
-            font-size: 0.8em;
-            font-weight: 700;
-            letter-spacing: var(--letter-spacing);
-            font-variant: small-caps;
-            color: var(--soft-dark-gray);
-            border: 1px solid var(--soft-light-gray);
-            border-radius: var(--radius);
-            background-color: var(--extra-light-gray);
-            padding: 0rem 0.5rem;
+        align-items: center;
+        justify-content: flex-start;
+        grid-template-columns: auto 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 0;
+        .icon {
+          font-size: 2.5rem;
+          transition: var(--transition);
+          &:hover {
+            color: var(--byzantine);
+            transform: scale(1.02);
           }
         }
-        .info {
-          color: var(--soft-dark-gray);
-          max-width: 55ch;
-        }
-        h4 {
-          color: var(--dark-gray);
-        }
-        .instruction-list {
-          list-style: outside;
-          padding-left: 1.1rem;
+        .back-arrow {
+          text-transform: uppercase;
+          color: var(--primary-gray);
+          font-weight: 500;
         }
       }
-    }
-  }
-  @media screen and (min-width: 753px) {
-    min-height: 84.5vh;
-    hr {
-      display: none;
-    }
-    .cocktail-container {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      .img {
-        max-height: 500px;
-        grid-column: 1/6;
-        grid-row: 1/1;
-        width: 100%;
+      .cocktail-container {
+        margin-top: 1rem;
+        display: grid;
+        gap: 2rem;
+        .img {
+          width: 100%;
+          border-radius: var(--radius);
+        }
+        .cocktail-datails {
+          display: grid;
+          gap: 1rem;
+          h2 {
+            text-transform: uppercase;
+          }
+          .cocktail-type {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            justify-content: flex-start;
+            gap: 0.5rem !important;
+            .label {
+              text-transform: lowercase;
+              font-size: 0.8em;
+              font-weight: 700;
+              letter-spacing: var(--letter-spacing);
+              font-variant: small-caps;
+              color: var(--soft-dark-gray);
+              border: 1px solid var(--soft-light-gray);
+              border-radius: var(--radius);
+              background-color: var(--extra-light-gray);
+              padding: 0rem 0.5rem;
+            }
+          }
+          .info {
+            color: var(--soft-dark-gray);
+            max-width: 55ch;
+          }
+          h4 {
+            color: var(--dark-gray);
+          }
+          .instruction-list {
+            list-style: outside;
+            padding-left: 1.1rem;
+          }
+        }
       }
-      .cocktail-datails {
-        grid-column: 6/-1;
-        grid-row: 1/1;
-        width: 100%;
-        gap: 1rem !important;
+    }
+    @media screen and (min-width: 753px) {
+      min-height: 84.5vh;
+      hr {
+        display: none;
+      }
+      .cocktail-container {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        .img {
+          max-height: 500px;
+          grid-column: 1/6;
+          grid-row: 1/1;
+          width: 100%;
+        }
+        .cocktail-datails {
+          grid-column: 6/-1;
+          grid-row: 1/1;
+          width: 100%;
+          gap: 1rem !important;
+        }
       }
     }
-  }
-  @media screen and (min-width: 992px) {
-    .cocktail-container {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      .img {
-        max-height: 600px;
-        grid-column: 1/5;
-        grid-row: 1/1;
-        width: 100%;
+    @media screen and (min-width: 992px) {
+      .cocktail-container {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        .img {
+          max-height: 600px;
+          grid-column: 1/5;
+          grid-row: 1/1;
+          width: 100%;
+        }
       }
     }
-  }
-`;
-
-export default SingleCocktailScreen;
+    `;
+    
+    export default SingleCocktailScreen;
